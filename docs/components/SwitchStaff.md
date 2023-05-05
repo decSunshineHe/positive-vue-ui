@@ -1,22 +1,24 @@
 <script setup>
-import Basic from './demo/ComponentA/Basic.vue'
+import Basic from './demo/SwitchStaff/Basic.vue'
 </script>
 
-# Component A
+# SwitchStaff
 
 This is a simple Hello Word component with a prop and use icon <span class="icon-heart" style="color:tomato"></span> from a font file.
 
-## Example Usage
+## 代码演示
 
 You may show demo below with the code snippet.
+
+### 基本使用
 
 <DemoContainer>
   <Basic/>
 </DemoContainer>
 
-<<< @/components/demo/ComponentA/Basic.vue
+<<< @/components/demo/SwitchStaff/Basic.vue
 
-## Reference
+## API
 
 You may show props, slots, events, methods, etc. using Markdown.
 

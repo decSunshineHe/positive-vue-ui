@@ -1,13 +1,13 @@
 import DefaultTheme from "vitepress/theme";
 import DemoContainer from "../components/DemoContainer.vue";
-import MyLib from "my-lib";
+import PVComponents from "PVComponents";
 
 import "./custom.css";
 
 export default {
   ...DefaultTheme,
   enhanceApp({ app }) {
-    app.use(MyLib);
+    app.use(PVComponents);
     app.component("DemoContainer", DemoContainer);
   },
 };

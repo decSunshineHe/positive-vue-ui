@@ -1,5 +1,5 @@
 {
-  "name": "my-lib",
+  "name": "@positive-map/v-components",
   "version": "0.0.0",
   "scripts": {
     "build": "rimraf dist && vue-tsc && vite build",
@@ -22,14 +22,13 @@
     "vue-tsc": "^0.29.8"
   },
   "files": [
-    "src",
     "dist"
   ],
   "types": "./dist/types/index.d.ts",
-  "module": "./dist/my-lib.es.js",
+  "module": "./dist/pv-components.es.js",
   "exports": {
     ".": {
-      "import": "./dist/my-lib.es.js"
+      "import": "./dist/pv-components.es.js"
     },
     "./dist/style.css": "./dist/style.css"
   }
