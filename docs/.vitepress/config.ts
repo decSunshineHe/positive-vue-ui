@@ -25,7 +25,7 @@ module.exports = {
   vite: {
     resolve: {
       alias: {
-        PVComponents: path.resolve(__dirname, "../../packages"),
+        PVComponents: path.resolve(__dirname, "../../src"),
       },
       dedupe: ["vue"], // avoid error when using dependencies that also use Vue
     },

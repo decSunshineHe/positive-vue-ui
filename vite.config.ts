@@ -6,7 +6,7 @@ module.exports = defineConfig({
   plugins: [vue()], // to process SFC
   build: {
     lib: {
-      entry: path.resolve(__dirname, "packages/index.ts"),
+      entry: path.resolve(__dirname, "src/index.ts"),
       name: "PositiveVComponents",
       formats: ["es"], // adding 'umd' requires globals set to every external module
       fileName: (format) => `pv-components.${format}.js`,
