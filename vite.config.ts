@@ -1,9 +1,15 @@
 const path = require("path");
 const { defineConfig } = require("vite");
 import vue from "@vitejs/plugin-vue";
+import ElementPlus from "unplugin-element-plus/vite";
 
 module.exports = defineConfig({
-  plugins: [vue()], // to process SFC
+  plugins: [
+    vue(),
+    ElementPlus({
+      // options
+    }),
+  ], // to process SFC
   build: {
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),

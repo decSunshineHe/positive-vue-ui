@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, CSSProperties, ref } from "vue";
 import StaffSvg from "./CustomSvg.vue";
+import { ElPopover, ElScrollbar } from "element-plus";
 
 interface StaffProps {
   staffId: number;
@@ -24,13 +25,13 @@ const staffList = [
     staffId: 1,
     staffCode: "1",
     mcName: "1",
-    tenantName: "1",
+    tenantName: "小何的租户",
   },
   {
     staffId: 2,
     staffCode: "2",
     mcName: "2",
-    tenantName: "2",
+    tenantName: "小冒的租户",
   },
 ];
 
@@ -38,6 +39,7 @@ const staffId = ref(1);
 
 const staffName = computed(() => {
   const found = staffList.find((item: any) => item.staffId === staffId.value);
+  console.log("found", found);
   return found ? found.tenantName : "请选择租户";
 });
 
@@ -46,6 +48,7 @@ const switchStaff = (_staffId: any) => {
   console.log("切换");
 };
 </script>
+
 <template>
   <div v-if="staffList.length > 1" class="staff-switch">
     <div class="icon">
@@ -54,13 +57,13 @@ const switchStaff = (_staffId: any) => {
     <div class="staff-name">
       {{ staffName }}
     </div>
-    <el-popover
+    <ElPopover
       placement="bottom-end"
       trigger="hover"
       :offset="22"
       popper-class="staff-switch-popover"
     >
-      <el-scrollbar max-height="320px">
+      <ElScrollbar max-height="320px">
         <div class="staff-select-list">
           <div
             v-for="item in staffList"
@@ -72,13 +75,14 @@ const switchStaff = (_staffId: any) => {
             {{ item.staffCode }} | {{ item.mcName }} | {{ item.tenantName }}
           </div>
         </div>
-      </el-scrollbar>
+      </ElScrollbar>
       <template #reference>
         <a class="link-btn">切换</a>
       </template>
-    </el-popover>
+    </ElPopover>
   </div>
 </template>
+
 <style lang="scss" scoped>
 .staff-switch {
   display: flex;
@@ -102,6 +106,7 @@ const switchStaff = (_staffId: any) => {
     display: block;
     cursor: pointer;
     color: #4a90e2;
+    text-decoration: none;
   }
 }
 
