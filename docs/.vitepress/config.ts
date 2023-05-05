@@ -7,11 +7,8 @@ module.exports = {
     repo: "https://github.com/decSunshineHe/positive-vue-ui",
     sidebar: [
       {
-        text: "Introduction",
-        children: [
-          { text: "What is PV-Components?", link: "/" },
-          { text: "Getting Started", link: "/guide/" },
-        ],
+        text: "介绍",
+        children: [{ text: "快速使用", link: "/guide/" }],
       },
       {
         text: "页面元素",

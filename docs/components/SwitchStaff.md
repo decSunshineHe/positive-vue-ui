@@ -4,11 +4,7 @@ import Basic from './demo/SwitchStaff/Basic.vue'
 
 # SwitchStaff
 
-This is a simple Hello Word component with a prop and use icon <span class="icon-heart" style="color:tomato"></span> from a font file.
-
 ## 代码演示
-
-You may show demo below with the code snippet.
 
 ### 基本使用
 
@@ -20,22 +16,23 @@ You may show demo below with the code snippet.
 
 ## API
 
-You may show props, slots, events, methods, etc. using Markdown.
+### SwitchStaff
 
-### Properties
+| 参数         | 说明             | 类型                                                                    | 默认值 | 版本  |
+| :----------- | :--------------- | :---------------------------------------------------------------------- | :----- | :---- |
+| showSwitch   | 是否支持切换     | `boolean`                                                               | true   | 0.0.1 |
+| overlayStyle | 菜单根元素的样式 | `CSSProperties`                                                         | -      | 0.0.1 |
+| onChange     | 切换租户的回调   | `function` (state: boolean, staff: [StaffProps](./#staffprops)) => void | -      | 0.0.1 |
 
-| Name | Type   | Default | Description    |
-| ---- | ------ | ------- | -------------- |
-| msg  | string | null    | Messge to show |
+### StaffProps
 
-### Events
-
-| Name | Parameters | Description |
-| ---- | ---------- | ----------- |
-|      |            |             |
-
-### Slots
-
-| Name | Parameters | Description |
-| ---- | ---------- | ----------- |
-|      |            |             |
+| 属性字段         | 说明       | 类型     |
+| :--------------- | :--------- | :------- |
+| customerName     | 用户名称   | `string` |
+| customerFullName | 用户全称   | `string` |
+| id               | id         | `number` |
+| muid             | 用户 muid  | `string` |
+| staffCode        | staff 编码 | `string` |
+| tenantMcid       | 租户 mcid  | `string` |
+| tenantName       | 租户名称   | `string` |
+| customerMcid     | 用户 mcid  | `string` |
