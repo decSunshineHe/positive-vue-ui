@@ -1,5 +1,3 @@
-import MyUtil from './MyUtil'
+import Hooks from "./hooks";
 
-export {
-  MyUtil
-}
+export { Hooks };

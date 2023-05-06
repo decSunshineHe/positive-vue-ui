@@ -8,11 +8,11 @@ import Basic from './demo/SwitchStaff/Basic.vue'
 
 ### 基本使用
 
-<DemoContainer>
-  <Basic/>
-</DemoContainer>
-
 <<< @/components/demo/SwitchStaff/Basic.vue
+
+<DemoContainer>
+<Basic/>
+</DemoContainer>
 
 ## API
 

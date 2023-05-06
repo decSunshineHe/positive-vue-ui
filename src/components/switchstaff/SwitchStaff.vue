@@ -2,13 +2,9 @@
 import { computed, CSSProperties, ref } from "vue";
 import StaffSvg from "./CustomSvg.vue";
 import { ElPopover, ElScrollbar } from "element-plus";
-
-interface StaffProps {
-  staffId: number;
-  staffCode: string;
-  mcName: string;
-  tenantName: string;
-}
+import { useCurrent, useStaffList } from "../../utils/hooks";
+import { StaffProps } from "../../common/entity";
+import { UserInfo } from "../../api/user";
 
 interface Props {
   showSwitch?: boolean;
@@ -20,26 +16,17 @@ const props = withDefaults(defineProps<Props>(), {
   onChange: () => {},
 });
 
-const staffList = [
-  {
-    staffId: 1,
-    staffCode: "1",
-    mcName: "1",
-    tenantName: "小何的租户",
-  },
-  {
-    staffId: 2,
-    staffCode: "2",
-    mcName: "2",
-    tenantName: "小冒的租户",
-  },
-];
+let current = ref<UserInfo>();
+useCurrent().then((res) => (current.value = res));
 
-const staffId = ref(1);
+let staffList = ref<StaffProps[]>([]);
+useStaffList().then((res) => (staffList.value = res));
+const staffId = computed(() => current.value?.currentStaffId);
 
 const staffName = computed(() => {
-  const found = staffList.find((item: any) => item.staffId === staffId.value);
-  console.log("found", found);
+  const found = staffList.value.find(
+    (item: any) => item.id === current.value?.currentStaffId
+  );
   return found ? found.tenantName : "请选择租户";
 });
 
@@ -67,12 +54,13 @@ const switchStaff = (_staffId: any) => {
         <div class="staff-select-list">
           <div
             v-for="item in staffList"
-            :key="item.staffId"
+            :key="item.id"
             class="staff-select-item"
-            :class="{ 'is-current': staffId === item.staffId }"
-            @click="switchStaff(item.staffId)"
+            :class="{ 'is-current': staffId === item.id }"
+            @click="switchStaff(item.id)"
           >
-            {{ item.staffCode }} | {{ item.mcName }} | {{ item.tenantName }}
+            {{ item.staffCode }} {{ item.customerName }} |
+            {{ item.tenantName }}
           </div>
         </div>
       </ElScrollbar>
@@ -83,7 +71,7 @@ const switchStaff = (_staffId: any) => {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .staff-switch {
   display: flex;
   align-items: center;

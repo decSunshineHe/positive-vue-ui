@@ -1,4 +1,5 @@
 const path = require("path");
+const serverAddress = "http://10.224.32.144:8080/";
 
 module.exports = {
   title: "Positive Vue Components",
@@ -25,6 +26,25 @@ module.exports = {
         PVComponents: path.resolve(__dirname, "../../src"),
       },
       dedupe: ["vue"], // avoid error when using dependencies that also use Vue
+    },
+    server: {
+      proxy: {
+        "/api/cors": {
+          target: serverAddress,
+          changeOrigin: true,
+          secure: false,
+        },
+        "/api": {
+          target: serverAddress,
+          changeOrigin: true,
+          secure: false,
+        },
+        "/server": {
+          target: serverAddress,
+          changeOrigin: true,
+          secure: false,
+        },
+      },
     },
   },
 };
