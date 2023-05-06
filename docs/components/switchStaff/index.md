@@ -1,18 +1,8 @@
-<script setup>
-import Basic from './demo/SwitchStaff/Basic.vue'
-</script>
-
 # SwitchStaff
 
 ## 代码演示
 
 ### 基本使用
-
-<<< @/components/demo/SwitchStaff/Basic.vue
-
-<DemoContainer>
-<Basic/>
-</DemoContainer>
 
 ## API
 
