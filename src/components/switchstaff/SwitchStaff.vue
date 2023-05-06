@@ -94,7 +94,7 @@ const switchStaff = (_staffId: any) => {
     display: block;
     cursor: pointer;
     color: #4a90e2;
-    text-decoration: none;
+    text-decoration: none !important;
   }
 }
 

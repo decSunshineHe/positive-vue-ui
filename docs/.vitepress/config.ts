@@ -1,3 +1,4 @@
+import { demoBlockPlugin } from "vitepress-theme-demoblock";
 const path = require("path");
 const serverAddress = "http://10.224.32.144:8080/";
 
@@ -34,6 +35,7 @@ const sidebar = {
 module.exports = {
   title: "Positive-Map",
   description: "Just playing around.",
+  lang: "zh-CN",
 
   themeConfig: {
     repo: "https://github.com/decSunshineHe/positive-vue-ui",
@@ -47,10 +49,21 @@ module.exports = {
     ],
     sidebar,
   },
+  markdown: {
+    theme: {
+      light: "rose-pine-dawn",
+      dark: "rose-pine-moon",
+    },
+    config: (md) => {
+      // 添加DemoBlock插槽
+      md.use(demoBlockPlugin);
+    },
+  },
+
   vite: {
     resolve: {
       alias: {
-        PVComponents: path.resolve(__dirname, "../../src"),
+        PostiveUI: path.resolve(__dirname, "./../../src/components"),
       },
       dedupe: ["vue"], // avoid error when using dependencies that also use Vue
     },
