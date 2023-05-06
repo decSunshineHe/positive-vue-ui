@@ -1,4 +1,5 @@
 import { ElMessageBox } from "element-plus";
+import "element-plus/es/components/message-box/style/css";
 import { Subject, Subscription } from "rxjs";
 
 const httpStatusSubject = new Subject<number>();
@@ -56,29 +57,27 @@ export async function fetch<T>(
     );
   } else {
     if (body?.code === 401) {
-      window.location.assign(
-        "/server/landing?to=" + encodeURIComponent(window.location.href)
-      );
-      // if (process.env.NODE_ENV === "development") {
-      //   console.log("未登录，跳转到登录页面");
-      //   ElMessageBox.confirm(
-      //     "检测到您尚未登录登录，是否跳转到登录页面？",
-      //     "账号登录",
-      //     {
-      //       confirmButtonText: "确定",
-      //       cancelButtonText: "取消",
-      //       type: "warning",
-      //     }
-      //   ).then(() => {
-      //     window.location.assign(
-      //       "/server/landing?to=" + encodeURIComponent(window.location.href)
-      //     );
-      //   });
-      // } else {
-      //   window.location.assign(
-      //     "/server/landing?to=" + encodeURIComponent(window.location.href)
-      //   );
-      // }
+      if (process.env.NODE_ENV === "development") {
+        console.log("未登录，跳转到登录页面");
+        ElMessageBox.confirm(
+          "检测到您尚未登录登录，是否跳转到登录页面？",
+          "账号登录",
+          {
+            confirmButtonText: "确定",
+            cancelButtonText: "取消",
+            type: "warning",
+            appendTo: document.body,
+          }
+        ).then(() => {
+          window.location.assign(
+            "/server/landing?to=" + encodeURIComponent(window.location.href)
+          );
+        });
+      } else {
+        window.location.assign(
+          "/server/landing?to=" + encodeURIComponent(window.location.href)
+        );
+      }
     }
   }
   return body?.data;

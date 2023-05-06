@@ -80,6 +80,7 @@ module.exports = {
       dedupe: ["vue"], // avoid error when using dependencies that also use Vue
     },
     server: {
+      port: 3000,
       proxy: {
         "/api/cors": {
           target: serverAddress,

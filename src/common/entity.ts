@@ -1,4 +1,3 @@
-import { Key } from "react";
 import { UserStatus, Gender } from "./const";
 
 export enum NavigationPreference {
@@ -97,7 +96,7 @@ export interface IMenu {
 export interface MenuEntry {
   name: string;
   url: string;
-  key: Key;
+  key: number | string;
   children?: MenuEntry[];
   always?: boolean;
   origin?: string;
