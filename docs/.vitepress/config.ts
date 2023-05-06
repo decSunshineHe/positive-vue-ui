@@ -1,4 +1,5 @@
 import { demoBlockPlugin } from "vitepress-theme-demoblock";
+
 const path = require("path");
 const serverAddress = "http://10.224.32.144:8080/";
 
@@ -36,9 +37,14 @@ module.exports = {
   title: "Positive-Map",
   description: "Just playing around.",
   lang: "zh-CN",
+  lastUpdated: true,
 
   themeConfig: {
     repo: "https://github.com/decSunshineHe/positive-vue-ui",
+
+    outlineTitle: "本页目录",
+    lastUpdatedText: "上次更新",
+
     nav: [
       { text: "指南", link: "/guide/", activeMatch: "/guide/" },
       {
@@ -48,7 +54,13 @@ module.exports = {
       },
     ],
     sidebar,
+    editLink: {
+      pattern:
+        "https://github.com/decSunshineHe/positive-vue-ui/edit/main/docs/:path",
+      text: "在 GitHub 上编辑此页",
+    },
   },
+
   markdown: {
     theme: {
       light: "rose-pine-dawn",
