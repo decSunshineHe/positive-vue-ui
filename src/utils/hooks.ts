@@ -15,7 +15,7 @@ function resetCurrent() {
   getTenantCurrent().resetData();
 }
 
-function refreshCurrrent(callback?: () => void) {
+export function refreshCurrrent(callback?: () => void) {
   getTenantCurrent().refreshData(callback);
 }
 
@@ -37,11 +37,20 @@ export function useStaffList(callback?: (staffList?: any) => void) {
   const currentInstance = getTenantCurrent();
 
   currentInstance.subscribe((current) => {
-    if (current?.currentStaffId) {
-      getStaffList().then((res) => {
-        callback?.(res);
-      });
-    }
+    const getList = () => {
+      if (current?.currentStaffId) {
+        getStaffList().then((res) => {
+          callback?.(res);
+          loop();
+        });
+      }
+    };
+    const loop = () => {
+      setTimeout(() => {
+        getList();
+      }, 10000);
+    };
+    getList();
   });
 }
 
