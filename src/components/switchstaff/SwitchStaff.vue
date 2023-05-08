@@ -127,6 +127,9 @@ const onClickItem = (staff: any) => {
   .staff-name,
   .link-btn {
     margin-left: 5px;
+    &:hover {
+      background-color: unset;
+    }
   }
   .staff-name {
     max-width: 160px;
@@ -202,6 +205,7 @@ const onClickItem = (staff: any) => {
 .staff-switch-popover {
   width: auto !important;
   padding: 8px 4px 8px 0 !important;
+  border: none !important;
   &.el-popper.is-light {
     background-color: #1f1f1f;
   }

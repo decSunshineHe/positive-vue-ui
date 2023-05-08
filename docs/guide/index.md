@@ -7,7 +7,7 @@
 使用 npm 进行安装
 
 ```bash
-npm install --save-dev @positive-map/v-components
+npm install @positive-map/v-components
 ```
 
 ### yarn
@@ -15,5 +15,5 @@ npm install --save-dev @positive-map/v-components
 使用 yarn 进行安装
 
 ```bash
-yarn add --save-dev @positive-map/v-components
+yarn add @positive-map/v-components
 ```

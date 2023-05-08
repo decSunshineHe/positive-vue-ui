@@ -10,6 +10,8 @@ const sidebar = {
       items: [
         { text: "安装", link: "/guide/" },
         { text: "快速上手", link: "/guide/use" },
+        { text: "本地开发", link: "/guide/local" },
+        { text: "更新日志", link: "/guide/log" },
       ],
     },
   ],

@@ -7,8 +7,12 @@
 ```js
 import { createApp } from "vue";
 import App from "./App.vue";
-
 import PositiveUI from "@positive-map/v-components";
+import "@positive-map/v-components/dist/style.css";
 
 createApp(App).use(PositiveUI).mount("#app");
 ```
+
+## 按需引入
+
+待补充。。。
