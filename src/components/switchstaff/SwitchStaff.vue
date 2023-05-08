@@ -17,17 +17,18 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 let current = ref<UserInfo>();
-useCurrent().then((res) => (current.value = res));
+useCurrent((val) => (current.value = val));
 
 let staffList = ref<StaffProps[]>([]);
-useStaffList().then((res) => (staffList.value = res));
+useStaffList((list) => (staffList.value = list));
+
 const staffId = computed(() => current.value?.currentStaffId);
 
 const staffName = computed(() => {
   const found = staffList.value.find(
     (item: any) => item.id === current.value?.currentStaffId
   );
-  return found ? found.tenantName : "请选择租户";
+  return found ? found.tenantName : "请选择";
 });
 
 const switchStaff = (_staffId: any) => {

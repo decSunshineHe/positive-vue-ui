@@ -9,7 +9,6 @@
 
 ## TODO
 
-- 数据持久化
 - husky 配置
 - eslint 配置
 - prettier 配置
