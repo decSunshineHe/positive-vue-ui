@@ -21,6 +21,8 @@ const props = withDefaults(defineProps<Props>(), {
 let current = ref<UserInfo>();
 useCurrent(val => (current.value = val));
 
+const demo = 22;
+
 let staffList = ref<StaffProps[]>([]);
 useStaffList(list => (staffList.value = list));
 

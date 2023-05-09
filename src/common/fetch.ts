@@ -47,7 +47,6 @@ export async function fetch<T>(input: RequestInfo, init?: RequestInit): Promise<
   } else {
     if (body?.code === 401) {
       if (process.env.NODE_ENV === 'development') {
-        console.log('未登录，跳转到登录页面');
         ElMessageBox.confirm('检测到您尚未登录登录，是否跳转到登录页面？', '账号登录', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
