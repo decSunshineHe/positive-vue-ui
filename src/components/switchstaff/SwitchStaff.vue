@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { computed, CSSProperties, markRaw, ref } from "vue";
-import StaffSvg from "./CustomSvg.vue";
-import { ElMessageBox, ElPopover, ElScrollbar } from "element-plus";
-import { refreshCurrrent, useCurrent, useStaffList } from "../../utils/hooks";
-import { StaffProps } from "../../common/entity";
-import { UserInfo } from "../../api/user";
-import { Warning } from "@element-plus/icons-vue";
-import { switchStaff } from "../../api/staff";
+import { computed, CSSProperties, markRaw, ref } from 'vue';
+import StaffSvg from './CustomSvg.vue';
+import { ElMessageBox, ElPopover, ElScrollbar } from 'element-plus';
+import { refreshCurrrent, useCurrent, useStaffList } from '../../utils/hooks';
+import { StaffProps } from '../../common/entity';
+import { UserInfo } from '../../api/user';
+import { Warning } from '@element-plus/icons-vue';
+import { switchStaff } from '../../api/staff';
 
 interface Props {
   showSwitch?: boolean;
@@ -19,32 +19,28 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 let current = ref<UserInfo>();
-useCurrent((val) => (current.value = val));
+useCurrent(val => (current.value = val));
 
 let staffList = ref<StaffProps[]>([]);
-useStaffList((list) => (staffList.value = list));
+useStaffList(list => (staffList.value = list));
 
 const staffId = computed(() => current.value?.currentStaffId);
 
 const staffName = computed(() => {
-  const found = staffList.value.find(
-    (item: any) => item.id === current.value?.currentStaffId
-  );
-  return found ? found.tenantName : "请选择";
+  const found = staffList.value.find((item: any) => item.id === current.value?.currentStaffId);
+  return found ? found.tenantName : '请选择';
 });
 
 const switchStaffAfterReload = () => {
   const pathname = window.location.pathname;
-  const length = (pathname ?? "/").split("/").length;
+  const length = (pathname ?? '/').split('/').length;
   return length > 4
-    ? window.location.assign(
-        window.origin + "/" + pathname.split("/").slice(1, 4).join("/")
-      )
+    ? window.location.assign(window.origin + '/' + pathname.split('/').slice(1, 4).join('/'))
     : window.location.reload();
 };
 
 const hasDiffrentTenant = computed(() => {
-  const size = new Set((staffList.value ?? []).map((i) => i.tenantMcid)).size;
+  const size = new Set((staffList.value ?? []).map(i => i.tenantMcid)).size;
   return size > 1;
 });
 
@@ -52,17 +48,15 @@ const onClickItem = (staff: any) => {
   if (staff.currentStaffId === staffId.value) return;
 
   const message = `<div class="message-wrapper"><div class="message-title">切换账号</div><div class="message-content">即将切换到${
-    hasDiffrentTenant ? staff.tenantName + "下" : ""
-  }${staff.customerName}的账号${
-    staff.staffCode
-  },确定吗？未保存的数据将全部丢失</div></div>`;
+    hasDiffrentTenant ? staff.tenantName + '下' : ''
+  }${staff.customerName}的账号${staff.staffCode},确定吗？未保存的数据将全部丢失</div></div>`;
 
   ElMessageBox.confirm(message, {
     dangerouslyUseHTMLString: true,
-    confirmButtonText: "确定",
-    cancelButtonText: "取消",
-    customClass: "staff-switch-message",
-    type: "warning",
+    confirmButtonText: '确定',
+    cancelButtonText: '取消',
+    customClass: 'staff-switch-message',
+    type: 'warning',
     showClose: false,
     appendTo: document.body,
     icon: markRaw(Warning),
@@ -74,7 +68,7 @@ const onClickItem = (staff: any) => {
       })
       .catch((e: { status: number }) => {
         if (e.status === 412 || e.status === 403) {
-          console.log("切换失败");
+          console.log('切换失败');
         }
       });
   });
@@ -89,12 +83,7 @@ const onClickItem = (staff: any) => {
     <div class="staff-name">
       {{ staffName }}
     </div>
-    <ElPopover
-      placement="bottom-end"
-      trigger="hover"
-      :offset="22"
-      popper-class="staff-switch-popover"
-    >
+    <ElPopover placement="bottom-end" trigger="hover" :offset="22" popper-class="staff-switch-popover">
       <ElScrollbar max-height="320px">
         <div class="staff-select-list">
           <div

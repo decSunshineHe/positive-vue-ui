@@ -94,8 +94,7 @@ table tbody {
   }
 
   .VPLink.link.VPNavBarMenuLink {
-    background: linear-gradient(to right, var(--vp-c-brand), var(--vp-c-brand))
-      no-repeat right bottom;
+    background: linear-gradient(to right, var(--vp-c-brand), var(--vp-c-brand)) no-repeat right bottom;
     background-size: 0 2px;
     transition: background-size 0.3s;
   }
@@ -104,8 +103,7 @@ table tbody {
     background-size: 100% 2px;
   }
   .VPLink.link.VPNavBarMenuLink.active {
-    background: linear-gradient(to right, var(--vp-c-brand), var(--vp-c-brand))
-      no-repeat right bottom;
+    background: linear-gradient(to right, var(--vp-c-brand), var(--vp-c-brand)) no-repeat right bottom;
     background-size: 100% 2px;
   }
 
@@ -120,23 +118,14 @@ table tbody {
   .VPDoc.has-sidebar.has-aside .container .aside {
     padding-left: 0;
   }
-  .VPDoc.has-sidebar.has-aside
-    .container
-    .VPDocAside
-    .VPDocAsideOutline.has-outline
-    .content {
+  .VPDoc.has-sidebar.has-aside .container .VPDocAside .VPDocAsideOutline.has-outline .content {
     padding-left: 10px;
   }
   .VPDocAside .VPDocAsideOutline.has-outline .outline-marker {
     width: 5px;
     border-radius: 0 5px 5px 0;
   }
-  .VPDocAside
-    .VPDocAsideOutline.has-outline
-    .content
-    .root
-    li
-    .outline-link.active {
+  .VPDocAside .VPDocAsideOutline.has-outline .content .root li .outline-link.active {
     color: #2bc0ac;
   }
   .VPDoc.has-aside .container .content .content-container {

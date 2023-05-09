@@ -1,5 +1,5 @@
-import { fetch as request, ResponseCodeError } from "./fetch";
-import { ElMessage } from "element-plus";
+import { fetch as request, ResponseCodeError } from './fetch';
+import { ElMessage } from 'element-plus';
 
 async function fetch<T>(input: RequestInfo, init?: RequestInit): Promise<T> {
   try {
@@ -22,20 +22,14 @@ export type PromiseWithErrorHandler<T> = Promise<T> & ErrorHandlerReceiver<T>;
 interface ErrorHandlerReceiver<T> {
   onError(handler: ErrorHandler): PromiseWithErrorHandler<T>;
   then<TResult1 = T, TResult2 = never>(
-    onfulfilled?:
-      | ((value: T) => TResult1 | PromiseLike<TResult1>)
-      | undefined
-      | null,
-    onrejected?:
-      | ((reason: any) => TResult2 | PromiseLike<TResult2>)
-      | undefined
-      | null
+    onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null,
+    onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null
   ): Promise<TResult1 | TResult2>;
 }
 
 export function defaultErrorHandling(err: any): boolean {
   let rce: ResponseCodeError | undefined;
-  let defaultMessage = "未知错误！ 请联系管理员。";
+  let defaultMessage = '未知错误！ 请联系管理员。';
 
   if (err instanceof ResponseCodeError) {
     rce = err;
@@ -48,13 +42,13 @@ export function defaultErrorHandling(err: any): boolean {
       case 400:
         ElMessage({
           message: defaultMessage,
-          type: "error",
+          type: 'error',
         });
         return true;
       case 500:
         ElMessage({
           message: defaultMessage,
-          type: "error",
+          type: 'error',
         });
         return true;
     }
@@ -94,14 +88,11 @@ interface fetchConfigProps {
 export const createFetchInstance = (defaultConfig?: fetchConfigProps) => {
   const { handler = defaultErrorHandling } = defaultConfig ?? {};
 
-  return function fetchWithDefaultErrorHandling<T>(
-    input: RequestInfo,
-    init?: RequestInit
-  ): PromiseWithErrorHandler<T> {
+  return function fetchWithDefaultErrorHandling<T>(input: RequestInfo, init?: RequestInit): PromiseWithErrorHandler<T> {
     let errorHandler: ErrorHandler | undefined;
     let callThen = true;
 
-    const result = fetch(input, init).catch((e) => {
+    const result = fetch(input, init).catch(e => {
       if (errorHandler) {
         callThen = !errorHandler(e);
       } else {
@@ -111,8 +102,7 @@ export const createFetchInstance = (defaultConfig?: fetchConfigProps) => {
         throw e;
       }
     });
-    const mergedResult: PromiseWithErrorHandler<T> =
-      result as PromiseWithErrorHandler<T>;
+    const mergedResult: PromiseWithErrorHandler<T> = result as PromiseWithErrorHandler<T>;
 
     mergedResult.onError = (handler: ErrorHandler) => {
       errorHandler = handler;

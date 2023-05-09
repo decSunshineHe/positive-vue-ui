@@ -1,4 +1,4 @@
-import { BehaviorSubject, Subscription } from "rxjs";
+import { BehaviorSubject, Subscription } from 'rxjs';
 
 export interface ISubjectHolder<T> {
   subscribe(callback: (data?: T) => void): Subscription;
@@ -8,8 +8,7 @@ export interface ISubjectHolder<T> {
 }
 
 export class SubjectHolder<T> implements ISubjectHolder<T> {
-  private readonly subject: BehaviorSubject<T | undefined> =
-    new BehaviorSubject<T | undefined>(undefined);
+  private readonly subject: BehaviorSubject<T | undefined> = new BehaviorSubject<T | undefined>(undefined);
   private data?: T;
   private asyncGetData?: () => Promise<T>;
   private sending = false;
@@ -17,7 +16,7 @@ export class SubjectHolder<T> implements ISubjectHolder<T> {
     if (asyncGetData) {
       this.asyncGetData = asyncGetData;
     }
-    this.subscribe((data) => {
+    this.subscribe(data => {
       this.data = data;
     });
     this.getData();
@@ -55,9 +54,7 @@ export class SubjectHolder<T> implements ISubjectHolder<T> {
   }
 }
 
-export function lazyHolderSingletonGetter<T>(
-  supplier: () => ISubjectHolder<T>
-): () => ISubjectHolder<T> {
+export function lazyHolderSingletonGetter<T>(supplier: () => ISubjectHolder<T>): () => ISubjectHolder<T> {
   let instance: ISubjectHolder<T>;
   return () => {
     if (!instance) {

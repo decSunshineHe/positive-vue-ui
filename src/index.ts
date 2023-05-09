@@ -1,5 +1,5 @@
-import { App } from "vue";
-import * as components from "./components";
+import { App } from 'vue';
+import * as components from './components';
 
 function install(app: App) {
   for (const key in components) {
@@ -9,6 +9,6 @@ function install(app: App) {
 
 export default { install };
 
-export * from "./components";
-export * from "./constants";
-export * from "./utils";
+export * from './components';
+export * from './constants';
+export * from './utils';

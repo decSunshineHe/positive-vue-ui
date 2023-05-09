@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { CSSProperties } from "vue";
+import { CSSProperties } from 'vue';
 
 interface Props {
   onChange?: (state: boolean, staff: any) => void;

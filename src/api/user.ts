@@ -1,4 +1,4 @@
-import { fetch } from "../common/request";
+import { fetch } from '../common/request';
 
 export interface UserInfo {
   name?: string;
@@ -11,5 +11,5 @@ export interface UserInfo {
 }
 
 export function getCurrent(): Promise<UserInfo> {
-  return fetch("/api/getUserInfo");
+  return fetch('/api/getUserInfo');
 }

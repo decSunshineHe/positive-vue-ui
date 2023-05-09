@@ -1,5 +1,5 @@
-import { StaffProps } from "../common/entity";
-import { fetch } from "../common/request";
+import { StaffProps } from '../common/entity';
+import { fetch } from '../common/request';
 
 export function getStaffList(): Promise<StaffProps[]> {
   return fetch(`/api/getStaffList`);

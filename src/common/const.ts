@@ -10,8 +10,8 @@ export enum Gender {
 }
 
 export enum PermissionType {
-  MENU = "p",
-  BUTTON = "b",
+  MENU = 'p',
+  BUTTON = 'b',
 }
 
 export enum MenuLevel {

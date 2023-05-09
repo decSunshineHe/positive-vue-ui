@@ -1,4 +1,4 @@
-import { UserStatus, Gender } from "./const";
+import { UserStatus, Gender } from './const';
 
 export enum NavigationPreference {
   AUTO = 1,
@@ -79,8 +79,8 @@ export interface Tenant {
 }
 
 export enum PlaceType {
-  TOP = "top",
-  NAVBAR = "navbar",
+  TOP = 'top',
+  NAVBAR = 'navbar',
 }
 
 export interface IMenu {
