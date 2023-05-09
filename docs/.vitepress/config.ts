@@ -83,17 +83,7 @@ module.exports = {
     server: {
       port: 3000,
       proxy: {
-        '/api/cors': {
-          target: serverAddress,
-          changeOrigin: true,
-          secure: false,
-        },
         '/api': {
-          target: serverAddress,
-          changeOrigin: true,
-          secure: false,
-        },
-        '/server': {
           target: serverAddress,
           changeOrigin: true,
           secure: false,

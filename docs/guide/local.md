@@ -1,27 +1,37 @@
 # 本地开发
 
-## Proxy 代理
+## 前端 Proxy
 
 需要对 devServer 设置 Proxy 属性，对组件内置请求的 api 和 server 进行代理，解决本地开发的跨域问题，`vite.config.ts` 加入如下代码：
 
 ```js
-  const serverAddress = "http://localhost:8080"; // 后端地址
-
   server: {
     port: 3000,
     proxy: {
-      "/server": {
-        target: serverAddress,
-        changeOrigin: true, // 允许跨域
-        secure: false,
-      },
       "/api": {
-        target: serverAddress,
+        target: 'http://10.224.32.144:8080/', // 后端地址,
         changeOrigin: true,
         secure: false,
       },
     },
   },
+```
+
+## 后端配置
+
+注意：`callBackUrl` 的端口需要与[前端 Proxy](../guide/local.html#前端-proxy)中`server.port`端口一致，示例如下
+
+```yaml
+maxtropy:
+  openplatform:
+    ...
+
+    integratedCoreUri: true
+    callBackUrl: http://localhost:3000/server/callback # 前端 Proxy 中 server.port 端口
+
+    ...
+    whiteList:
+      - /api/test
 ```
 
 ## 检测登录态
