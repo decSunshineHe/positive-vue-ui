@@ -6,10 +6,7 @@ interface Props {
   overlayStyle?: CSSProperties;
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  showSwitch: true,
-  onChange: () => {},
-});
+const props = withDefaults(defineProps<Props>(), {});
 </script>
 
 <template>
