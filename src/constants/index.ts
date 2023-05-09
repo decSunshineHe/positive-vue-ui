@@ -1,3 +1,3 @@
-import * as MyConstants from './MyConstants';
+import * as Const from './const';
 
-export { MyConstants };
+export { Const };
