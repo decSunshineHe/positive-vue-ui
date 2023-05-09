@@ -88,6 +88,11 @@ module.exports = {
           changeOrigin: true,
           secure: false,
         },
+        '/server': {
+          target: serverAddress,
+          changeOrigin: true,
+          secure: false,
+        },
       },
     },
   },

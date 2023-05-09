@@ -5,11 +5,18 @@
 需要对 devServer 设置 Proxy 属性，对组件内置请求的 api 和 server 进行代理，解决本地开发的跨域问题，`vite.config.ts` 加入如下代码：
 
 ```js
+  const serverAddress = 'http://10.224.32.144:8080/'; // 后端地址
+
   server: {
     port: 3000,
     proxy: {
       "/api": {
-        target: 'http://10.224.32.144:8080/', // 后端地址,
+        target: serverAddress,
+        changeOrigin: true,
+        secure: false,
+      },
+      '/server': {
+        target: serverAddress,
         changeOrigin: true,
         secure: false,
       },
