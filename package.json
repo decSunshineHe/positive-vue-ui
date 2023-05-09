@@ -19,7 +19,8 @@
     "build": "rimraf dist && vue-tsc && vite build",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:serve": "vitepress serve docs"
+    "docs:serve": "vitepress serve docs",
+    "prepare": "husky install"
   },
   "peerDependencies": {
     "vue": "^3.2.25"
@@ -27,6 +28,7 @@
   "devDependencies": {
     "@types/node": "^17.0.45",
     "@vitejs/plugin-vue": "^2.0.0",
+    "husky": "^8.0.3",
     "prettier": "^2.8.8",
     "rimraf": "^3.0.2",
     "sass": "^1.49.7",
