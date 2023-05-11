@@ -10,12 +10,11 @@ import { switchStaff } from '../../api/staff';
 
 interface Props {
   showSwitch?: boolean;
-  onChange?: (state: boolean, staff: any) => void;
   overlayStyle?: CSSProperties;
 }
 const props = withDefaults(defineProps<Props>(), {
   showSwitch: true,
-  onChange: () => {},
+  overlayStyle: () => ({}),
 });
 
 let current = ref<UserInfo>();
@@ -73,6 +72,8 @@ const onClickItem = (staff: any) => {
       });
   });
 };
+
+console.log('props', props.showSwitch);
 </script>
 
 <template>
@@ -99,7 +100,7 @@ const onClickItem = (staff: any) => {
         </div>
       </ElScrollbar>
       <template #reference>
-        <a class="link-btn">切换</a>
+        <a v-show="props.showSwitch" class="link-btn">切换</a>
       </template>
     </ElPopover>
   </div>

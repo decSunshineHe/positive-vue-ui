@@ -9,7 +9,7 @@
 ```vue
 <template>
   <div class="switch-staff-box">
-    <SwitchStaff />
+    <SwitchStaff :showSwitch="false" />
   </div>
 </template>
 
