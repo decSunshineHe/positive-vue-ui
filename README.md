@@ -7,6 +7,18 @@
 - 在 docs/.vuepress/config.ts 中添加组件路由
 - 在 docs/components 中添加组件文档
 
+## 项目运行
+
+```bash
+npm install
+```
+
+### 开发环境
+
+```bash
+npm run docs:dev
+```
+
 ## TODO
 
 - husky 配置
