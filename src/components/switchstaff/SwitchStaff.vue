@@ -47,7 +47,7 @@ const onClickItem = (staff: any) => {
   if (staff.currentStaffId === staffId.value) return;
 
   const message = `<div class="message-wrapper"><div class="message-title">切换账号</div><div class="message-content">即将切换到${
-    hasDiffrentTenant ? staff.tenantName + '下' : ''
+    hasDiffrentTenant.value ? staff.tenantName + '下' : ''
   }${staff.customerName}的账号${staff.staffCode},确定吗？未保存的数据将全部丢失</div></div>`;
 
   ElMessageBox.confirm(message, {

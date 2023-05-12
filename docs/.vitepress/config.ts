@@ -43,7 +43,7 @@ module.exports = {
 
   themeConfig: {
     repo: 'https://github.com/decSunshineHe/positive-vue-ui',
-
+    outline: 'deep',
     outlineTitle: '本页目录',
     lastUpdatedText: '上次更新',
 

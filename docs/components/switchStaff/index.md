@@ -7,9 +7,19 @@
 :::demo
 
 ```vue
+<script>
+export default defineComponent({
+  setup() {
+    const showSwitch = false;
+    return {
+      showSwitch,
+    };
+  },
+});
+</script>
 <template>
   <div class="switch-staff-box">
-    <SwitchStaff :showSwitch="false" />
+    <SwitchStaff :showSwitch="showSwitch" />
   </div>
 </template>
 
