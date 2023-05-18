@@ -94,5 +94,6 @@ module.exports = {
         },
       },
     },
+    ssr: { noExternal: ['element-plus'] },
   },
 };
