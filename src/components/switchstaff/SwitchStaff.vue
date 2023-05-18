@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, CSSProperties, markRaw, ref } from 'vue';
+import { computed, markRaw, ref } from 'vue';
 import StaffSvg from './CustomSvg.vue';
 import { ElMessageBox, ElPopover, ElScrollbar } from 'element-plus';
 import { refreshCurrrent, useCurrent, useStaffList } from '../../utils/hooks';
@@ -10,11 +10,11 @@ import { switchStaff } from '../../api/staff';
 
 interface Props {
   showSwitch?: boolean;
-  overlayStyle?: CSSProperties;
+  customClass?: string;
 }
 const props = withDefaults(defineProps<Props>(), {
   showSwitch: true,
-  overlayStyle: () => ({}),
+  customClass: '',
 });
 
 let current = ref<UserInfo>();
@@ -72,12 +72,10 @@ const onClickItem = (staff: any) => {
       });
   });
 };
-
-console.log('props', props.showSwitch);
 </script>
 
 <template>
-  <div v-if="staffList.length > 1" class="staff-switch">
+  <div v-if="staffList.length > 1" class="staff-switch" :class="props?.customClass">
     <div class="icon">
       <StaffSvg />
     </div>
@@ -110,7 +108,7 @@ console.log('props', props.showSwitch);
 .staff-switch {
   display: flex;
   align-items: center;
-  padding-right: 8px;
+  font-size: 14px;
   .icon {
     height: 16px;
   }
@@ -126,7 +124,7 @@ console.log('props', props.showSwitch);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(255, 255, 255, 0.65);
   }
   .link-btn {
     display: block;
@@ -194,16 +192,17 @@ console.log('props', props.showSwitch);
 
 .staff-switch-popover {
   width: auto !important;
-  padding: 8px 4px 8px 0 !important;
-  border: none !important;
-  &.el-popper.is-light {
-    background-color: #1f1f1f;
-  }
+  &.el-popper.is-light,
+  &.el-popper.is-light .el-popper__arrow::before,
   .el-scrollbar {
     background-color: #1f1f1f;
   }
-  .el-popper__arrow::before {
-    background-color: #1f1f1f !important;
+  &.el-popper.is-light .el-popper__arrow::before {
+    border: none;
+  }
+  &.el-popover.el-popper {
+    padding: 8px 4px 8px 0;
+    border: none;
   }
   .el-scrollbar__view {
     padding: 0 8px;
