@@ -39,6 +39,7 @@ module.exports = {
   description: 'Just playing around.',
   lang: 'zh-CN',
   lastUpdated: true,
+  base: '/positive-vue-ui/',
 
   themeConfig: {
     repo: 'https://github.com/decSunshineHe/positive-vue-ui',
