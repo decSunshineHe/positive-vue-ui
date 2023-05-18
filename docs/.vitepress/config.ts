@@ -1,6 +1,5 @@
 import { demoBlockPlugin } from 'vitepress-theme-demoblock';
-
-const path = require('path');
+import path from 'path';
 const serverAddress = 'http://10.224.32.144:8080/';
 
 const sidebar = {

@@ -1,5 +1,7 @@
 import DefaultTheme from 'vitepress/theme';
 import './styles/custom.css';
+import ElementPlus from 'element-plus';
+import 'element-plus/dist/index.css';
 import 'vitepress-theme-demoblock/dist/theme/styles/index.css';
 import Demo from 'vitepress-theme-demoblock/dist/client/components/Demo.vue';
 import DemoBlock from 'vitepress-theme-demoblock/dist/client/components/DemoBlock.vue';
@@ -19,6 +21,8 @@ export default {
     //     });
     //   },
     // });
+
+    app.use(ElementPlus);
 
     // 组件注册
     app.component('SwitchStaff', SwitchStaff);
