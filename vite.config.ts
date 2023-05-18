@@ -19,7 +19,7 @@ module.exports = defineConfig({
     },
     rollupOptions: {
       // external modules won't be bundled into your library
-      external: ['vue'], // not every external has a global
+      external: ['vue', 'vue-router'], // not every external has a global
       output: {
         // disable warning on src/index.ts using both default and named export
         exports: 'named',
@@ -27,6 +27,7 @@ module.exports = defineConfig({
         // for externalized deps (not useful if 'umd' is not in lib.formats)
         globals: {
           vue: 'Vue',
+          VueRouter: 'vue-router',
         },
       },
     },
