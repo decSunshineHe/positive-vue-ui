@@ -6,10 +6,4 @@ SwitchStaff.install = (app: App) => {
   app.component(SwitchStaff.__name as string, SwitchStaff);
 };
 
-declare module 'vue' {
-  export interface GlobalComponents {
-    SwitchStaff: typeof SwitchStaff;
-  }
-}
-
 export default SwitchStaff;
