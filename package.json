@@ -8,6 +8,7 @@
   "module": "./dist/pv-components.es.js",
   "exports": {
     ".": {
+      "types": "./dist/types/index.d.ts",
       "import": "./dist/pv-components.es.js"
     },
     "./dist/style.css": "./dist/style.css"
