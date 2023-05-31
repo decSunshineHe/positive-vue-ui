@@ -21,10 +21,7 @@
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs",
-    "prepare": "husky install",
-    "dockerBuild": "./build-docker.sh build",
-    "dockerPush": "./build-docker.sh push",
-    "deploy": "./build-docker.sh deploy"
+    "prepare": "husky install"
   },
   "peerDependencies": {
     "element-plus": ">=2.3.4",
