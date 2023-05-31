@@ -3,7 +3,7 @@ set -xe
 
 COMMAND=$1
 
-PROJECT_NAME=$(echo 'console.log(require("./package.json").name)' | node -)
+PROJECT_NAME=PositiveVueUI
 VERSION=$(git describe --tag --dirty --long)
 DOCKER_IMAGE_REPO=192.168.2.106:8680/demo
 SERVER_ADDR=root@192.168.2.101
