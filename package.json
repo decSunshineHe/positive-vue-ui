@@ -25,7 +25,7 @@
     "fix": "npm version patch",
     "fix:beta": "npm version prerelease --preid=beta",
     "release": "npm version minor",
-    "release:beta": "npm version prerelease --preid=beta"
+    "release:beta": "npm version minor --preid=beta"
   },
   "peerDependencies": {
     "element-plus": ">=2.3.4",
