@@ -22,7 +22,9 @@
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs",
     "prepare": "husky install",
-    "release": "npm version prerelease",
+    "fix": "npm version patch",
+    "fix:beta": "npm version prepatch --preid=beta",
+    "release": "npm version minor",
     "release:beta": "npm version preminor --preid=beta"
   },
   "peerDependencies": {
