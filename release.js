@@ -11,7 +11,7 @@ const exec = util.promisify(childProcess.exec);
 const spawn = childProcess.spawnSync;
 
 const error = chalk.bold.red;
-const info = chalk.keyword('orange');
+const info = chalk.keyword('green');
 
 async function version(versionType, tagType) {
   const { stdout, stderr } = await exec(
