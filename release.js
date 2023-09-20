@@ -31,22 +31,6 @@ async function branch() {
   return stdout;
 }
 
-// 本地构建
-async function build() {
-  const { stdout, stderr } = await exec(`npm run build`);
-  if (stderr) throw stderr;
-  console.log(info(`本地构建完成！`));
-  return stdout;
-}
-
-// 发布
-async function publish(tagType) {
-  const { stdout, stderr } = await exec(`npm publish ${tagType ? '--tag beta' : ''}`);
-  if (stderr) throw stderr;
-  console.log(info(`当前发版分支为：${stdout.trim()}`));
-  return stdout;
-}
-
 const run = async () => {
   try {
     const versionType = process.argv[2];
@@ -75,12 +59,10 @@ const run = async () => {
     await spawn('git', ['push', 'origin', currentBranch.trim()], { stdio: 'inherit' });
 
     // 发布稳定版才进行标签
-    if (latVersions.includes(versionType)) {
-      await spawn('git', ['tag', npmVersion.trim()], { stdio: 'inherit' });
-      await spawn('git', ['push', 'origin', npmVersion.trim()], { stdio: 'inherit' });
-    }
-
-    await exec(`npm run build`);
+    // if (latVersions.includes(versionType)) {
+    //   await spawn('git', ['tag', npmVersion.trim()], { stdio: 'inherit' });
+    //   await spawn('git', ['push', 'origin', npmVersion.trim()], { stdio: 'inherit' });
+    // }
 
     // await publish(tagType);
   } catch (err) {

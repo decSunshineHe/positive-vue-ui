@@ -27,6 +27,7 @@
     "minor:beta": "npm run commit preminor beta",
     "patch:beta": "npm run commit prepatch beta",
     "release:beta": "npm run commit prerelease beta",
+    "postcommit": "npm run build",
     "commit": "node ./release.js"
   },
   "peerDependencies": {
