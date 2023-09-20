@@ -1,6 +1,6 @@
 {
   "name": "@positive-map/v-components",
-  "version": "0.4.0-beta.1",
+  "version": "0.4.2-beta.0",
   "files": [
     "dist"
   ],
@@ -22,10 +22,12 @@
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs",
     "prepare": "husky install",
-    "fix": "npm version patch",
-    "fix:beta": "npm version prerelease --preid=beta --no-git-tag-version",
-    "release": "npm version minor",
-    "release:beta": "npm version prerelease --preid=beta"
+    "patch": "npm run commit patch",
+    "minor": "npm run commit minor",
+    "minor:beta": "npm version preminor --preid=beta",
+    "patch:beta": "npm version prepatch --preid=beta",
+    "release:beta": "npm version prerelease --preid=beta",
+    "commit": "node ./release.js"
   },
   "peerDependencies": {
     "element-plus": ">=2.3.4",
