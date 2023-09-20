@@ -13,6 +13,7 @@ const spawn = childProcess.spawnSync;
 const error = chalk.bold.red;
 const info = chalk.keyword('green');
 
+// 版本控制
 async function version(versionType, tagType) {
   const { stdout, stderr } = await exec(
     `npm version ${versionType} ${tagType ? `--preid=${tagType}` : ''} --no-git-tag-version`
@@ -22,6 +23,7 @@ async function version(versionType, tagType) {
   return stdout;
 }
 
+// 分支管理
 async function branch() {
   const { stdout, stderr } = await exec(`git rev-parse --abbrev-ref HEAD`);
   if (stderr) throw stderr;
@@ -53,14 +55,16 @@ const run = async () => {
 
     await spawn('git', ['add', 'package.json', 'package-lock.json'], { stdio: 'inherit' });
     await spawn('git', ['commit', '-m', npmVersion.trim()], { stdio: 'inherit' });
+    await spawn('git', ['status'], { stdio: 'inherit' });
+    await spawn('git', ['push', 'origin', currentBranch.trim()], { stdio: 'inherit' });
 
     // 发布稳定版才进行标签
     if (latVersions.includes(versionType)) {
       await spawn('git', ['tag', npmVersion.trim()], { stdio: 'inherit' });
-      await spawn('git', ['push', 'origin', npmVersion.trim()], { stdio: 'inherit' });
+      // await spawn('git', ['push', 'origin', npmVersion.trim()], { stdio: 'inherit' });
     }
-    await spawn('git', ['status'], { stdio: 'inherit' });
-    await spawn('git', ['push', 'origin', currentBranch.trim()], { stdio: 'inherit' });
+
+    // await publish(tagType);
   } catch (err) {
     console.log(error(`出错了： ${err.message}`));
     process.exit(1);
