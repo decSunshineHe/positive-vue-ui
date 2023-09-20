@@ -22,7 +22,7 @@
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs",
     "prepare": "husky install",
-    "patch": "npm run commit patch",
+    "patch": "npm run commit patch && npm run build",
     "minor": "npm run commit minor",
     "minor:beta": "npm run commit preminor beta",
     "patch:beta": "npm run commit prepatch beta",
