@@ -46,13 +46,14 @@ const run = async () => {
     }
     // release/v0分支限定发布latest
     if (latVersions.includes(versionType) && !tagType && currentBranch.trim() != 'release/v0') {
-      throw new Error('发布稳定版本清切换到release/v0分支！');
+      throw new Error('发布稳定版本请切换到release/v0分支！');
     }
 
     const npmVersion = await version(versionType, tagType);
 
     await spawn('git', ['add', 'package.json', 'package-lock.json'], { stdio: 'inherit' });
     await spawn('git', ['commit', '-m', npmVersion.trim()], { stdio: 'inherit' });
+
     // 发布稳定版才进行标签
     if (latVersions.includes(versionType)) {
       await spawn('git', ['tag', npmVersion.trim()], { stdio: 'inherit' });
@@ -61,7 +62,8 @@ const run = async () => {
     await spawn('git', ['status'], { stdio: 'inherit' });
     await spawn('git', ['push', 'origin', currentBranch.trim()], { stdio: 'inherit' });
   } catch (err) {
-    console.log(error(`Something went wrong： ${err.message}`));
+    console.log(error(`出错了： ${err.message}`));
+    process.exit(1);
   }
 };
 
