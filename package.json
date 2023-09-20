@@ -24,9 +24,9 @@
     "prepare": "husky install",
     "patch": "npm run commit patch",
     "minor": "npm run commit minor",
-    "minor:beta": "npm version preminor --preid=beta",
-    "patch:beta": "npm version prepatch --preid=beta",
-    "release:beta": "npm version prerelease --preid=beta",
+    "minor:beta": "npm run commit preminor beta",
+    "patch:beta": "npm run commit prepatch beta",
+    "release:beta": "npm run commit prerelease beta",
     "commit": "node ./release.js"
   },
   "peerDependencies": {
