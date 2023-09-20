@@ -23,9 +23,9 @@
     "docs:serve": "vitepress serve docs",
     "prepare": "husky install",
     "fix": "npm version patch",
-    "fix:beta": "npm version prerelease --preid=beta",
+    "fix:beta": "npm version prerelease --preid=beta --no-git-tag-version",
     "release": "npm version minor",
-    "release:beta": "npm version preminor --preid=beta"
+    "release:beta": "npm version prerelease --preid=beta"
   },
   "peerDependencies": {
     "element-plus": ">=2.3.4",
