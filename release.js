@@ -61,7 +61,6 @@ const run = async () => {
     // 发布稳定版才进行标签
     if (latVersions.includes(versionType)) {
       await spawn('git', ['tag', npmVersion.trim()], { stdio: 'inherit' });
-      // await spawn('git', ['push', 'origin', npmVersion.trim()], { stdio: 'inherit' });
     }
 
     // await publish(tagType);
