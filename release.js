@@ -9,19 +9,23 @@ const chalk = require('chalk');
 
 const exec = util.promisify(childProcess.exec);
 const spawn = childProcess.spawnSync;
+
 const error = chalk.bold.red;
+const info = chalk.keyword('orange');
 
 async function version(versionType, tagType) {
   const { stdout, stderr } = await exec(
     `npm version ${versionType} ${tagType ? `--preid=${tagType}` : ''} --no-git-tag-version`
   );
   if (stderr) throw stderr;
+  console.log(info(`版本升级到：${stdout.trim()}`));
   return stdout;
 }
 
 async function branch() {
   const { stdout, stderr } = await exec(`git rev-parse --abbrev-ref HEAD`);
   if (stderr) throw stderr;
+  console.log(info(`当前发版分支为：${stdout.trim()}`));
   return stdout;
 }
 
@@ -38,11 +42,11 @@ const run = async () => {
 
     // test分支限定发布beta
     if (preVersions.includes(versionType) && tagType && currentBranch.trim() !== 'test') {
-      throw new Error('publish beta please checkout branch to test');
+      throw new Error('发布beta版本请切换到test分支！');
     }
     // release/v0分支限定发布latest
     if (latVersions.includes(versionType) && !tagType && currentBranch.trim() != 'release/v0') {
-      throw new Error('publish latest please checkout branch to release/v0');
+      throw new Error('发布稳定版本清切换到release/v0分支！');
     }
 
     const npmVersion = await version(versionType, tagType);
@@ -57,7 +61,7 @@ const run = async () => {
     await spawn('git', ['status'], { stdio: 'inherit' });
     await spawn('git', ['push', 'origin', currentBranch.trim()], { stdio: 'inherit' });
   } catch (err) {
-    console.log(error(`Something went wrong: ${err.message}`));
+    console.log(error(`Something went wrong： ${err.message}`));
   }
 };
 
