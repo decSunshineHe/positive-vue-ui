@@ -1,6 +1,6 @@
 {
   "name": "@positive-map/v-components",
-  "version": "0.4.19",
+  "version": "0.4.20",
   "files": [
     "dist"
   ],
@@ -27,7 +27,7 @@
     "minor:beta": "npm run commit preminor beta",
     "patch:beta": "npm run commit prepatch beta",
     "release:beta": "npm run commit prerelease beta",
-    "postcommit": "git push && git push --tags",
+    "postpatch": "git push && git push --tags",
     "commit": "node ./release.js"
   },
   "peerDependencies": {
