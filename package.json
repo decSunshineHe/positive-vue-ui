@@ -26,8 +26,8 @@
     "minor": "npm run commit minor",
     "minor:beta": "npm run commit preminor beta",
     "patch:beta": "npm run commit prepatch beta",
-    "release:beta": "npm run commit prerelease beta && npm run build",
-    "commit": "node ./release.js"
+    "release:beta": "npm run commit prerelease beta",
+    "commit": "node ./release.js && npm run build"
   },
   "peerDependencies": {
     "element-plus": ">=2.3.4",
