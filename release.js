@@ -5,9 +5,11 @@
 
 const util = require('util');
 const childProcess = require('child_process');
+const chalk = require('chalk');
 
 const exec = util.promisify(childProcess.exec);
 const spawn = childProcess.spawnSync;
+const error = chalk.bold.red;
 
 async function version(versionType, tagType) {
   const { stdout, stderr } = await exec(
@@ -54,8 +56,7 @@ const run = async () => {
     await spawn('git', ['status'], { stdio: 'inherit' });
     await spawn('git', ['push', 'origin', currentBranch.trim()], { stdio: 'inherit' });
   } catch (err) {
-    console.log('Something went wrong:');
-    console.error(err.message);
+    console.log(error(`Something went wrong: ${err.message}`));
   }
 };
 
