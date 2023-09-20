@@ -71,18 +71,18 @@ const run = async () => {
 
     await spawn('git', ['add', 'package.json', 'package-lock.json'], { stdio: 'inherit' });
     await spawn('git', ['commit', '-m', npmVersion.trim()], { stdio: 'inherit' });
+    await spawn('git', ['status'], { stdio: 'inherit' });
+    await spawn('git', ['push', 'origin', currentBranch.trim()], { stdio: 'inherit' });
 
     // 发布稳定版才进行标签
     if (latVersions.includes(versionType)) {
       await spawn('git', ['tag', npmVersion.trim()], { stdio: 'inherit' });
       await spawn('git', ['push', 'origin', npmVersion.trim()], { stdio: 'inherit' });
     }
-    await spawn('git', ['status'], { stdio: 'inherit' });
-    await spawn('git', ['push', 'origin', currentBranch.trim()], { stdio: 'inherit' });
 
-    await build();
+    await exec(`npm run build`);
 
-    await publish();
+    // await publish(tagType);
   } catch (err) {
     console.log(error(`出错了： ${err.message}`));
     process.exit(1);
