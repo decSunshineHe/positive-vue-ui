@@ -4,8 +4,10 @@
 'use strict';
 
 const util = require('util');
-const exec = util.promisify(require('child_process').exec);
-const spawn = require('child_process').spawnSync;
+const childProcess = require('child_process');
+
+const exec = util.promisify(childProcess.exec);
+const spawn = childProcess.spawnSync;
 
 async function version(versionType, tagType) {
   const { stdout, stderr } = await exec(
@@ -31,17 +33,18 @@ const run = async () => {
 
     // 当前分支
     const currentBranch = await branch();
-    if (tagType === 'beta' && currentBranch !== 'test') {
+
+    if (tagType === 'beta' && currentBranch.trim() !== 'test') {
       throw new Error('publish beta please checkout branch to test');
     }
-    if (currentBranch != 'release/v0') {
+    if (tagType !== 'beta' && currentBranch.trim() != 'release/v0') {
       throw new Error('publish latest please checkout branch to release/v0');
     }
 
     const npmVersion = await version(versionType, tagType);
 
     await spawn('git', ['add', 'package.json', 'package-lock.json'], { stdio: 'inherit' });
-    await spawn('git', ['commit', '-m', gitMessage.trim()], { stdio: 'inherit' });
+    await spawn('git', ['commit', '-m', npmVersion.trim()], { stdio: 'inherit' });
     // 发布稳定版才进行标签
     if (['patch', 'minor', 'major'].some(versionType)) {
       await spawn('git', ['tag', npmVersion.trim()], { stdio: 'inherit' });
