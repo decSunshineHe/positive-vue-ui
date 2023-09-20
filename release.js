@@ -13,6 +13,7 @@ const spawn = childProcess.spawnSync;
 const error = chalk.bold.red;
 const info = chalk.keyword('green');
 
+// 版本控制
 async function version(versionType, tagType) {
   const { stdout, stderr } = await exec(
     `npm version ${versionType} ${tagType ? `--preid=${tagType}` : ''} --no-git-tag-version`
@@ -22,8 +23,25 @@ async function version(versionType, tagType) {
   return stdout;
 }
 
+// 分支管理
 async function branch() {
   const { stdout, stderr } = await exec(`git rev-parse --abbrev-ref HEAD`);
+  if (stderr) throw stderr;
+  console.log(info(`当前发版分支为：${stdout.trim()}`));
+  return stdout;
+}
+
+// 本地构建
+async function build() {
+  const { stdout, stderr } = await exec(`npm run build`);
+  if (stderr) throw stderr;
+  console.log(info(`本地构建完成！`));
+  return stdout;
+}
+
+// 发布
+async function publish(tagType) {
+  const { stdout, stderr } = await exec(`npm publish ${tagType ? '--tag beta' : ''}`);
   if (stderr) throw stderr;
   console.log(info(`当前发版分支为：${stdout.trim()}`));
   return stdout;
@@ -61,6 +79,10 @@ const run = async () => {
     }
     await spawn('git', ['status'], { stdio: 'inherit' });
     await spawn('git', ['push', 'origin', currentBranch.trim()], { stdio: 'inherit' });
+
+    await build();
+
+    await publish();
   } catch (err) {
     console.log(error(`出错了： ${err.message}`));
     process.exit(1);
