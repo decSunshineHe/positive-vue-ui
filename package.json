@@ -1,6 +1,6 @@
 {
   "name": "@positive-map/v-components",
-  "version": "0.4.11",
+  "version": "0.4.12",
   "files": [
     "dist"
   ],
@@ -22,7 +22,7 @@
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs",
     "prepare": "husky install",
-    "patch": "npm run commit patch && npm run build",
+    "patch": "npm run commit patch",
     "minor": "npm run commit minor",
     "minor:beta": "npm run commit preminor beta",
     "patch:beta": "npm run commit prepatch beta",
