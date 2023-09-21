@@ -9,9 +9,20 @@ const chalk = require('chalk');
 
 const exec = util.promisify(childProcess.exec);
 const spawn = childProcess.spawnSync;
+const semver = require('semver');
+
+const currentVersion = require('./package.json').version;
 
 const error = chalk.bold.red;
 const info = chalk.keyword('green');
+
+// 版本控制
+async function tag() {
+  const { stdout, stderr } = await exec('git describe --abbrev=0');
+  if (stderr) throw stderr;
+  console.log(info(`最新tag：${stdout.trim()}`));
+  return stdout;
+}
 
 // 版本控制
 async function version(versionType, tagType) {
@@ -41,6 +52,7 @@ const run = async () => {
 
     // 当前分支
     const currentBranch = await branch();
+    const currentTag = await tag();
 
     // test分支限定发布beta
     if (preVersions.includes(versionType) && tagType && currentBranch.trim() !== 'test') {
@@ -50,6 +62,10 @@ const run = async () => {
     if (latVersions.includes(versionType) && !tagType && currentBranch.trim() != 'release/v0') {
       throw new Error('发布稳定版本请切换到release/v0分支！');
     }
+
+    let nextVersion = semver.inc(currentVersion, versionType);
+
+    console.log('1111', nextVersion);
 
     const npmVersion = await version(versionType, tagType);
 
