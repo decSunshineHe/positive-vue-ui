@@ -22,11 +22,10 @@
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs",
     "prepare": "husky install",
-    "patch": "npm run commit patch",
-    "minor": "npm run commit minor",
-    "minor:beta": "npm run commit preminor beta",
-    "patch:beta": "npm run commit prepatch beta",
-    "release:beta": "npm run commit prerelease beta",
+    "release": "npm run commit patch && npm run build:components && npm publish && node ./push-notify.js",
+    "postrelease": "git push --follow-tags",
+    "minor:beta": "npm run commit preminor beta && npm run build:components && npm publish --tag beta",
+    "release:beta": "npm run commit prerelease beta && npm run build:components && npm publish --tag beta",
     "commit": "node ./release.js"
   },
   "peerDependencies": {
