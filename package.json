@@ -22,7 +22,7 @@
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs",
     "prepare": "husky install",
-    "release": "npm run commit patch && npm run build:components && npm publish && node ./push-notify.js",
+    "release": "npm run commit patch && npm run build:components && npm publish",
     "postrelease": "git push --follow-tags",
     "minor:beta": "npm run commit preminor beta && npm run build:components && npm publish --tag beta",
     "release:beta": "npm run commit prerelease beta && npm run build:components && npm publish --tag beta",
