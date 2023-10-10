@@ -34,8 +34,8 @@ const run = async () => {
     if (tagType === 'beta' && currentBranch !== 'test') {
       throw new Error('publish beta please checkout branch to test');
     }
-    if (currentBranch != 'release/v0') {
-      throw new Error('publish latest please checkout branch to release/v0');
+    if (currentBranch != 'main') {
+      throw new Error('publish latest please checkout branch to main');
     }
 
     const npmVersion = await version(versionType, tagType);
